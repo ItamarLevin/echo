@@ -21,10 +21,9 @@ pipeline {
                         TAG="gcr.io/echo-267909/echo:dev-$GIT_COMMIT"
                     }
                     if (env.BRANCH_NAME ==~ /^staging.*/) {
-                        TAG=
-                        sh("docker build -t gcr.io/echo-267909/echo:staging-$GIT_COMMIT .")
+                        TAG="gcr.io/echo-267909/echo:staging-$GIT_COMMIT"
                     } 
-                    echo sh("echo $BRANCH_NAME is the branch")
+                    sh("echo building image: ${TAG}")
                     sh("docker build -t ${TAG} .")
 				}
 			}
