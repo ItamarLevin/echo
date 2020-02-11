@@ -23,7 +23,7 @@ pipeline {
                     if (env.BRANCH_NAME ==~ /^staging.*/) {
                         TAG="slipperymuffin/echo:staging-$GIT_COMMIT"
                     } 
-                    sh("echo building image: ${TAG} ...")
+                    sh("echo building image: ${TAG} ....")
                     sh("docker build -t ${TAG} .")
 				}
 			}
