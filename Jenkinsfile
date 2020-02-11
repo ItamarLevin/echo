@@ -4,10 +4,8 @@ def MTAG = '99-SNAPSHOT'
 
 pipeline {
     agent any
-	node{
-		def customImage = docker.build("my-image:${env.BUILD_ID}")
-	}
 	stages {
+
 	    stage('Build'){
 	    	when { 
 	    		anyOf{
