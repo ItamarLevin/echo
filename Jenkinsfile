@@ -21,7 +21,7 @@ pipeline {
                         sh("docker build -t master .")
                     } 
                     if (env.BRANCH_NAME ==~ /^dev.*/) {
-                        sh("docker build -t dev .")
+                        sh("docker build -t devv .")
                     }
                     if (env.BRANCH_NAME ==~ /^staging.*/) {
                         sh("docker build -t stage .")
