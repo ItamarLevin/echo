@@ -1,6 +1,4 @@
-def TAG = '${BRANCH_NAME}'
-def E2E
-def MTAG = '99-SNAPSHOT'
+def TAG
 
 pipeline {
     agent any
@@ -17,15 +15,17 @@ pipeline {
 			steps {
 				script{
 					if (env.BRANCH_NAME == 'master') {
-                        sh("docker build -t gcr.io/echo-267909/echo:1.0.$BUILD_NUMBER .")
+						TAG="gcr.io/echo-267909/echo:1.0.$BUILD_NUMBER"
                     } 
                     if (env.BRANCH_NAME ==~ /^dev.*/) {
-                        sh("docker build -t gcr.io/echo-267909/echo:dev-$GIT_COMMIT .")
+                        TAG="gcr.io/echo-267909/echo:dev-$GIT_COMMIT"
                     }
                     if (env.BRANCH_NAME ==~ /^staging.*/) {
+                        TAG=
                         sh("docker build -t gcr.io/echo-267909/echo:staging-$GIT_COMMIT .")
                     } 
                     echo sh("echo $BRANCH_NAME is the branch")
+                    sh("docker build -t ${TAG} .")
 				}
 			}
 		}
