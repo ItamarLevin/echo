@@ -4,9 +4,6 @@ def MTAG = '99-SNAPSHOT'
 
 pipeline {
     agent any
-    tools {
-    	Docker 'docker'
-    }
 	stages {
 	    stage('Build'){
 	    	when { 
@@ -16,6 +13,9 @@ pipeline {
 	    			expression { BRANCH_NAME ==~ /staging.*/ }
 	    		}
 	    	}
+    		node{
+				def customImage = docker.build("my-image:${env.BUILD_ID}")
+    		}
 			steps {sh("docker build -t echo .")}
 		}
 	}
