@@ -30,4 +30,10 @@ pipeline {
 			}
 		}
 	}
+	post { 
+        always { 
+            echo 'delete unused images...'
+            sh("docker image prune -af")
+        }
+    }
 }
