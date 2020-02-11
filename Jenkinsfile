@@ -11,11 +11,24 @@ pipeline {
 	    		anyOf{
 	    			expression{ BRANCH_NAME ==~ /^dev.*/ }
 	    			branch 'master'
-	    			expression { BRANCH_NAME ==~ /staging.*/ }
+	    			expression { BRANCH_NAME ==~ /^staging.*/ }
 	    		}
 	    	}
     		
-			steps {sh("docker build -t echo .")}
+			steps {
+				script{
+					if (env.BRANCH_NAME == 'master') {
+                        sh("docker build -t master .")
+                    } 
+                    if (env.BRANCH_NAME ==~ /^dev.*/) {
+                        sh("docker build -t dev .")
+                    }
+                    if (env.BRANCH_NAME ==~ /^staging.*/) {
+                        sh("docker build -t stage .")
+                    } 
+                    echo sh("echo $BRANCH_NAME is the branch")
+				}
+			}
 		}
 	}
 }
