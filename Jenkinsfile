@@ -37,7 +37,7 @@ pipeline {
 	    		}
 	    	}
 	    	steps{
-	    		sh("docker push ${TAG}"))
+	    		sh("docker push ${TAG}")
 	    	}
 		}
 	}
