@@ -15,7 +15,7 @@ pipeline {
 	    		}
 	    	}
     		
-			steps {sh("sudo docker build -t echo .")}
+			steps {bash("sudo docker build -t echo .")}
 		}
 	}
 }
