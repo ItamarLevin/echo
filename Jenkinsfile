@@ -5,7 +5,7 @@ def MTAG = '99-SNAPSHOT'
 pipeline {
     agent any
     tools {
-        docker 'docker'
+    	org.jenkinsci.plugins.docker.commons.tools.DockerTool 'docker'
     }
 	stages {
 	    stage('Build'){
