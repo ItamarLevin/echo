@@ -28,7 +28,7 @@ pipeline {
 				}
 			}
 		}
-		stage('Pussh'){
+		stage('Push'){
 	    	when { 
 	    		anyOf{
 	    			expression{ BRANCH_NAME ==~ /^dev.*/ }
