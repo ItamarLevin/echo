@@ -30,7 +30,7 @@ pipeline {
 		}
 		stage("Test"){
 			steps{
-				sh("running tests..")
+				sh("echo running tests..")
 			}
 		}
 		stage('Push'){
